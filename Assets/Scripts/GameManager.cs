@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text playerWon;
     public AudioSource music;
     public TMP_Text timeWatch;
+    private bool winGame = false;
 
     private int duration = 180;
     private int remainingDuration;
@@ -33,28 +34,24 @@ public class GameManager : MonoBehaviour
     }
     public void CheckWinState()
     {
-        int aliveCount = 0;
-        bool winGame = false;
+        /*int aliveCount = 0;*/
+        
         foreach (GameObject player in players)
         {
             if (player.activeSelf)
             {
+                music.Stop();
                 winGame = true;
                 playerWon.text = player.name + " won";
-                music.Stop();
                 gameOver.SetActive(true);
                 
             }
         }
-        /*if (aliveCount <= 1)
-        {
-            //Invoke(nameof(NewRound), 1f);
-        }*/
     }
     
     private IEnumerator UpdateTime()
     {
-        while (remainingDuration >= 0)
+        while (remainingDuration >= 0 && winGame == false)
         {
             Debug.Log("Timer: " + remainingDuration / 60 + ": " + remainingDuration % 60);
             timeWatch.text =   remainingDuration / 60 + " : " + remainingDuration % 60;
