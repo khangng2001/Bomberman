@@ -11,6 +11,6 @@ public class ScreenSwitcher : MonoBehaviour
     }
     public void ExitGame()
     {
-        Application.Quit();
+        SceneManager.LoadScene("Howtoplay");
     }
 }
