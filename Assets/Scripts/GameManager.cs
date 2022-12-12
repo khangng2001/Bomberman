@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text playerWon;
     public AudioSource music;
     public TMP_Text timeWatch;
-    private bool winGame = false;
+    private bool timeStop = false;
 
     private int duration = 180;
     private int remainingDuration;
@@ -34,27 +34,33 @@ public class GameManager : MonoBehaviour
     }
     public void CheckWinState()
     {
-        /*int aliveCount = 0;*/
-        
         foreach (GameObject player in players)
         {
-            if (player.activeSelf)
+        
+             if(!player.activeSelf)
+              {
+                music.Stop();
+                timeStop = true;
+                playerWon.text = "Draw";
+                gameOver.SetActive(true);
+            }
+            else if(player.activeSelf)
             {
                 music.Stop();
-                winGame = true;
+                timeStop = true;
                 playerWon.text = player.name + " won";
                 gameOver.SetActive(true);
-                
             }
+            
         }
     }
     
     private IEnumerator UpdateTime()
     {
-        while (remainingDuration >= 0 && winGame == false)
+        while (remainingDuration >= 0 && timeStop == false)
         {
             Debug.Log("Timer: " + remainingDuration / 60 + ": " + remainingDuration % 60);
-            timeWatch.text =   remainingDuration / 60 + " : " + remainingDuration % 60;
+            timeWatch.text =  "0" + remainingDuration / 60 + " : " + remainingDuration % 60;
             remainingDuration--;
             yield return new WaitForSeconds(1f);
         }
@@ -62,6 +68,7 @@ public class GameManager : MonoBehaviour
         if (remainingDuration <= 0)
         {
             Time.timeScale = 0f;
+            playerWon.text = "Draw";
             music.Stop();
             gameOver.SetActive(true);
         }
