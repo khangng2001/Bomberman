@@ -1,5 +1,5 @@
 # Bomberman
-1959009-Nguyễn Phú Khang
+1959009-Nguyễn Phú Khang \n
 1959015-Phan Quang Bảo Long
 Introduction:
 - A clone mini of a popular multiplayer Bomberman game
