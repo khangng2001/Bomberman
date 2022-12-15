@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text timeWatch;
     private bool timeStop = false;
 
-    private int duration = 180;
+    private int duration = 90;
     private int remainingDuration;
     
 
@@ -36,42 +36,53 @@ public class GameManager : MonoBehaviour
     {
         foreach (GameObject player in players)
         {
-        
-             if(!player.activeSelf)
-              {
-                music.Stop();
-                timeStop = true;
-                playerWon.text = "Draw";
-                gameOver.SetActive(true);
-            }
-            else if(player.activeSelf)
-            {
-                music.Stop();
-                timeStop = true;
-                playerWon.text = player.name + " won";
-                gameOver.SetActive(true);
-            }
-            
+           
+                if (!player.activeSelf)
+                {
+                    timeStop = true;
+                    Time.timeScale = 0f;
+                    music.Stop();
+                    playerWon.text = "Draw";
+                    Debug.Log("From CheckWinState");
+                    gameOver.SetActive(true);
+                }
+                else if (player.activeSelf)
+                {
+                    timeStop = true;
+                    Debug.Log("From CheckWinState");
+                    Time.timeScale = 0f;
+                    music.Stop();
+                    playerWon.text = player.name + " won";
+                    gameOver.SetActive(true);
+                }
         }
-    }
+
+}
     
     private IEnumerator UpdateTime()
     {
         while (remainingDuration >= 0 && timeStop == false)
         {
-            Debug.Log("Timer: " + remainingDuration / 60 + ": " + remainingDuration % 60);
+            //Debug.Log("Timer: " + remainingDuration / 60 + ": " + remainingDuration % 60);
+            //Debug.Log(timeStop);
             timeWatch.text =  "0" + remainingDuration / 60 + " : " + remainingDuration % 60;
             remainingDuration--;
             yield return new WaitForSeconds(1f);
         }
-        yield return null;
-        if (remainingDuration <= 0)
+        foreach (GameObject player in players)
         {
-            Time.timeScale = 0f;
-            playerWon.text = "Draw";
-            music.Stop();
-            gameOver.SetActive(true);
+            if (remainingDuration <= 0)
+            {
+                
+                    Time.timeScale = 0f;
+                    music.Stop();
+                    playerWon.text = "Draw";
+                    Debug.Log("From UpdateTime");
+                    gameOver.SetActive(true);
+                    
+            }
         }
+        
     }
 
     public void RestartButton()

@@ -154,4 +154,4 @@ MonoBehaviour:
   - {fileID: 1207673562550781503, guid: d9016e256a4385749a5f42cfe6ec905b, type: 3}
   - {fileID: 3599618426043817252, guid: d14b63e43f874cb4fb73a0273033cc92, type: 3}
   - {fileID: 3504747638448364824, guid: 0bcb44380cc0b294c9227a6a2822acbb, type: 3}
-  spawnChance: 0.5
+  spawnChance: 0.33
