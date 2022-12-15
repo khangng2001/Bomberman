@@ -4942,7 +4942,7 @@ MonoBehaviour:
   explosionRadius: 1
   explosionLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   destructiblePrefab: {fileID: 3832007680987540890, guid: cc7e83260be695f49abc8750d9db6044, type: 3}
   destructibleTiles: {fileID: 1806413499}
 --- !u!114 &1157408316
