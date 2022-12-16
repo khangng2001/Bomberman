@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text timeWatch;
     private bool timeStop = false;
 
-    private int duration = 10;
+    private int duration = 180;
     private int remainingDuration;
     
 
